@@ -1,4 +1,6 @@
 /Users/yanShan/Documents/ideaProjects/SGBlog/sangeng-blog/src/main/java/com/sangeng/controller/CategoryController.java
 /Users/yanShan/Documents/ideaProjects/SGBlog/sangeng-blog/src/main/java/com/sangeng/controller/LinkController.java
 /Users/yanShan/Documents/ideaProjects/SGBlog/sangeng-blog/src/main/java/com/sangeng/SanGengBlogApplication.java
+/Users/yanShan/Documents/ideaProjects/SGBlog/sangeng-blog/src/main/java/com/sangeng/controller/BlogLoginController.java
+/Users/yanShan/Documents/ideaProjects/SGBlog/sangeng-blog/src/main/java/com/sangeng/config/SecurityConfig.java
 /Users/yanShan/Documents/ideaProjects/SGBlog/sangeng-blog/src/main/java/com/sangeng/controller/ArticleController.java
