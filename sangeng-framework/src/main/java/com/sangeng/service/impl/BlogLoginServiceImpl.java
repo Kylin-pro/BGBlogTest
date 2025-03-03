@@ -8,8 +8,7 @@ public class BlogLoginServiceImpl implements BlogLoginService {
     @Override
     public ResponseResult login(User user) {
 
-
-
-return null;
+//登录逻辑实现
+        return null;
     }
 }
