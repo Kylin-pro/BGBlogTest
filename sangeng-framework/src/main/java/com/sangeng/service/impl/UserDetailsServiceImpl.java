@@ -1,6 +1,7 @@
 package com.sangeng.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sangeng.domain.entity.LoginUser;
 import com.sangeng.domain.entity.User;
 import com.sangeng.mapper.UserMapper;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl extends ServiceImpl<UserMapper,User> implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
