@@ -4,7 +4,8 @@ import com.sangeng.domain.ResponseResult;
 import com.sangeng.domain.entity.LoginUser;
 import com.sangeng.domain.entity.User;
 import com.sangeng.domain.vo.BlogUserLoginVo;
-import com.sangeng.domain.vo.UserInfoVo;
+import com.sangeng.domain.vo.UserInfo;
+
 import com.sangeng.enums.AppHttpCodeEnum;
 import com.sangeng.service.BlogLoginService;
 import com.sangeng.utils.BeanCopyUtils;
@@ -45,9 +46,9 @@ public class BlogLoginServiceImpl implements BlogLoginService {
         redisCache.setCacheObject("bloglogin:" + id, loginUser);
 
         //将token和userInfo返回
-        UserInfoVo userInfoVo = BeanCopyUtils.copyBean(loginUser.getUser(), UserInfoVo.class);
+        UserInfo userInfo = BeanCopyUtils.copyBean(loginUser.getUser(), UserInfo.class);
 
-        BlogUserLoginVo blogUserLoginVo = new BlogUserLoginVo(jwt, userInfoVo);
+        BlogUserLoginVo blogUserLoginVo = new BlogUserLoginVo(jwt, userInfo);
 
         return ResponseResult.okResult(blogUserLoginVo);
     }

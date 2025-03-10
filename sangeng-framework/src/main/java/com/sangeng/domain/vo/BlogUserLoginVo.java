@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class BlogUserLoginVo {
 
     private String token;
-    private UserInfoVo userInfo;
+    private UserInfo userInfo;
 }

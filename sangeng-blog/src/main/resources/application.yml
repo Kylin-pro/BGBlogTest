@@ -20,3 +20,8 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
       id-type: auto
+
+oss:
+  accessKey: "HPPZFIzQ4RrjbIGEzQYStla-BgeTIj-DfNDzVTWn"
+  secretKey: i1bb8zVeqIOQILvOAtJxWSHWzJWVFAeLBszFf__3
+  bucket: sgblogspringboot

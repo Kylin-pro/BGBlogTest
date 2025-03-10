@@ -26,5 +26,12 @@ public class SystemConstants
      *  友联是未审核状态
      */
     public static final String  LINK_STATUS_UNSETTLED = "2";
-    
+    /**
+     文章评论
+     */
+    public static final String ARTICLE_COMMENT = "0";
+    /**
+     友联评论
+     */
+    public static final String LINK_COMMENT = "1";
 }

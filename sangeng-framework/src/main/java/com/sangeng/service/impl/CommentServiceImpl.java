@@ -3,21 +3,25 @@ package com.sangeng.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sangeng.constants.SystemConstants;
 import com.sangeng.domain.ResponseResult;
 import com.sangeng.domain.entity.Comment;
 import com.sangeng.domain.vo.CommentVo;
 import com.sangeng.domain.vo.PageVo;
+import com.sangeng.enums.AppHttpCodeEnum;
+import com.sangeng.exception.SystemException;
 import com.sangeng.mapper.CommentMapper;
 import com.sangeng.service.CommentService;
 import com.sangeng.service.UserService;
 import com.sangeng.utils.BeanCopyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static net.sf.jsqlparser.parser.feature.Feature.comment;
 
 
 @Service
@@ -26,12 +30,14 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     @Autowired
     private UserService userService;
 
+
     @Override
-    public ResponseResult commentList(Long articleId, Integer pageNum, Integer pageSize) {
+    public ResponseResult commentList(String commentType, Long articleId, Integer pageNum, Integer pageSize) {
         //查询评论
         LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(Comment::getArticleId, articleId)
-                .eq(Comment::getRootId, -1);
+        queryWrapper.eq(SystemConstants.ARTICLE_COMMENT.equals(commentType),Comment::getArticleId, articleId)
+                .eq(Comment::getRootId, -1)
+                .eq(Comment::getType,commentType);
 
         Page<Comment> page = new Page<>(pageNum, pageSize);
         page(page, queryWrapper);
@@ -47,9 +53,20 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         }
 
 
-
         return ResponseResult.okResult(new PageVo(commentVoList, page.getTotal()));
     }
+
+    @Override
+    public Integer addComment(Comment comment) {
+        if (!StringUtils.hasText(comment.getContent())) {
+            throw new SystemException(AppHttpCodeEnum.COMMENT_NOT_NULL);
+        }
+       Integer row= save(comment)?1:0;
+        return row;
+
+    }
+
+
 
     private List<CommentVo> getChildren(Long id) {
         LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
